@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+      google.charts.load('current', {packages: ['corechart', 'bar']});
+      google.charts.setOnLoadCallback(drawMultSeries);
+
+      function drawMultSeries() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Age', 'Male', 'Female', 'Unknown'],
+          ['Gen Z', 34, 21, 12],
+          ['Millennials', 23, 56, 13],
+          ['Gen X', 45, 34, 12],
+          ['Boomers', 34, 54, 18],
+          ['Silent Gen.', 15, 29, 34]
+        ]);
+
+        var options = {
+          title: 'Visitors by Age and Gender',
+          chartArea: {width: '35%'},
+          hAxis: {
+            title: 'Count',
+            minValue: 0
+          },
+          vAxis: {
+            title: 'Age Group'
+          }
+        };
+
+        var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+
+       </script>
+  </head>
+
+  <body>
+    <!--Div that will hold the pie chart-->
+    <div id="chart_div"></div>
+  </body>
+</html>
+

@@ -1,0 +1,69 @@
+<html>
+  <head>
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+      var data1 = new google.visualization.DataTable();
+      data1.addColumn('date', 'Date1');
+      data1.addColumn('number', 'Count for Dates1');
+
+      data1.addRows([
+          [new Date(2001, 1, 5), 300],
+          [new Date(2001, 1, 6), 600],
+          [new Date(2001, 1, 7), 500],
+          [new Date(2001, 1, 8), 800],
+          [new Date(2001, 1, 9), 200],
+          [new Date(2001, 1, 10), 500],
+          [new Date(2001, 1, 11), 500],
+          [new Date(2001, 1, 12), 400],
+          [new Date(2001, 1, 13), 800]
+      ]);
+
+      var data2 = new google.visualization.DataTable();
+      data2.addColumn('date', 'Date2');
+      data2.addColumn('number', 'Count for Dates2');
+
+      data2.addRows([
+          [new Date(2001, 2, 5), 500],
+          [new Date(2001, 2, 6), 100],
+          [new Date(2001, 2, 7), 300],
+          [new Date(2001, 2, 8), 900],
+          [new Date(2001, 2, 9), 400],
+          [new Date(2001, 2, 10), 500],
+          [new Date(2001, 2, 11), 700],
+          [new Date(2001, 2, 12), 700],
+          [new Date(2001, 2, 13), 300]
+      ]);
+
+      var joinedData = google.visualization.data.join(data1, data2, 'full', [[0,0]], [1], [1]);
+
+      var options = {
+          title:'Store Traffic Over Two Date Ranges',
+        hAxis: {
+          title: 'Dates'
+        },
+        vAxis: {
+          title: 'Count of Visitors'
+          },
+        };
+
+    var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+    chart.draw(joinedData, options, {
+        height: 300,
+        width: 600,
+        interpolateNulls: true
+    });
+};
+    </script>
+  </head>
+
+  <body>
+    <!--Div that will hold the pie chart-->
+    <div id="chart_div"></div>
+  </body>
+</html>

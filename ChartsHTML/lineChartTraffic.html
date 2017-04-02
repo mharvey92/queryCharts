@@ -1,0 +1,42 @@
+<html>
+  <head>
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        //how do we handle inconsistent dates? In other words, what if a date has no data?
+        var data = google.visualization.arrayToDataTable([
+          ['Date', 'Count'],
+          ['2017/1/12',  1000],
+          ['2017/1/15',  1170],
+          ['2017/1/21',  660],
+          ['2017/1/22',  1030],
+        ]);
+
+        var options = {
+          title: 'Store Traffic Over Time',
+          hAxis: {
+            title: 'Date',
+            //format: 'Y,M,d,H';
+          },
+           vAxis: {
+            title: 'Traffic Count'
+          }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="curve_chart" style="width: 900px; height: 500px"></div>
+  </body>
+</html>
+
+

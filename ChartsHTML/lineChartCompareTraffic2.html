@@ -1,0 +1,51 @@
+<html>
+  <head>
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+    google.charts.load('current', {'packages':['corechart', 'line']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+      var data = new google.visualization.DataTable();
+      data.addColumn('date', 'Date1');
+      data.addColumn('number', 'Count for Dates1');
+      data.addColumn('number', 'Count for Dates2');
+      data.addRows([
+          [new Date(2001, 1, 5), 300, 350],
+          [new Date(2001, 1, 6), 600, 700],
+          [new Date(2001, 1, 7), 500, 800],
+          [new Date(2001, 1, 8), 800, 304],
+          [new Date(2001, 1, 9), 200, 200],
+          [new Date(2001, 1, 10), 500, 700],
+          [new Date(2001, 1, 11), 500, 550],
+          [new Date(2001, 1, 12), 400, 320],
+          [new Date(2001, 1, 13), 800, 600]
+      ]);
+
+      var options = {
+          title:'Store Traffic Over Two Date Ranges',
+        hAxis: {
+          title: 'Dates'
+        },
+        vAxis: {
+          title: 'Count of Visitors'
+          },
+        };
+
+    var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+    chart.draw(data, options, {
+        height: 300,
+        width: 600,
+        interpolateNulls: true
+    });
+};
+    </script>
+  </head>
+
+  <body>
+    <!--Div that will hold the pie chart-->
+    <div id="chart_div"></div>
+  </body>
+</html>
